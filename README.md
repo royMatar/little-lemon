@@ -1,2 +1,2 @@
 # little-lemon
-Capstone project for Meta-Front-End 
+Capstone project for Meta-Front-End Developer Certificate
