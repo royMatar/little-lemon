@@ -1,39 +1,43 @@
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
 function Main(){
-    return(
-        <div>
-            <div>This week's specials!</div>
-            <button>Menu</button>
-            <figure>
-                <img src="greek salad.jpg" alt="Dish picture"></img>
-                <figcaption>
-                    <div>Greek Salad</div>
-                    <div>7.50 $</div>
-                    <div>The famous greek salad of crispy lettuce, peppers, olives are cut in Chicago style, feta cheese garnished with crunchy garlic and rosemary </div>
-                    <button>Order Now</button>
-                </figcaption>
-            </figure>
-
-            <figure>
-                <img src="bruchetta.svg" alt="Dish picture"></img>
-                <figcaption>
-                    <div>Bruchetta</div>
-                    <div>12.00 $</div>
-                    <div>Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil </div>
-                    <button>Order Now</button>
-                </figcaption>
-            </figure>
-
-            <figure>
-                <img src="lemon dessert.jpg" alt="Dish picture"></img>
-                <figcaption>
-                    <div>Lemon Dessert</div>
-                    <div>6.00 $</div>
-                    <div>This comes straight from grandma's recipe book, every last ingredient has been sourced and is as authentic as can be imagined </div>
-                    <button>Order Now</button>
-                </figcaption>
-            </figure>
-        </div>
-    )
+    return(<>    
+    <Card style={{ width: '18rem' }}>
+    <Card.Img variant="top" src="greek salad.jpg" width={250} height={150}/>
+    <Card.Body>
+      <Card.Title>Greek Salad</Card.Title>
+      <Card.Text>
+        Some quick example text to build on the card title and make up the
+        bulk of the card's content.
+      </Card.Text>
+      <Button variant="primary">Order now</Button>
+    </Card.Body>
+  </Card>
+      <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="bruchetta.svg" width={250} height={150}/>
+      <Card.Body>
+        <Card.Title>Bruschetta</Card.Title>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Button variant="primary">Order now</Button>
+      </Card.Body>
+    </Card>
+        <Card style={{ width: '18rem' }}>
+        <Card.Img variant="top" src="lemon dessert.jpg" width={250} height={150}/>
+        <Card.Body>
+          <Card.Title>Lemon Dessert</Card.Title>
+          <Card.Text>
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </Card.Text>
+          <Button variant="primary">Order now</Button>
+        </Card.Body>
+      </Card></>
+)
 }
+
 
 export default Main;
