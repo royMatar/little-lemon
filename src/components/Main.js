@@ -1,41 +1,41 @@
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import { Card } from "react-bootstrap";
+
 
 function Main(){
-    return(<>    
-    <Card style={{ width: '18rem' }}>
-    <Card.Img variant="top" src="greek salad.jpg" width={250} height={150}/>
-    <Card.Body>
-      <Card.Title>Greek Salad</Card.Title>
-      <Card.Text>
-        Some quick example text to build on the card title and make up the
-        bulk of the card's content.
-      </Card.Text>
-      <Button variant="primary">Order now</Button>
-    </Card.Body>
-  </Card>
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="bruchetta.svg" width={250} height={150}/>
-      <Card.Body>
-        <Card.Title>Bruschetta</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Order now</Button>
-      </Card.Body>
-    </Card>
-        <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="lemon dessert.jpg" width={250} height={150}/>
-        <Card.Body>
-          <Card.Title>Lemon Dessert</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Button variant="primary">Order now</Button>
-        </Card.Body>
-      </Card></>
+    return(
+      <>
+    <div>
+      <div>
+        <p>This Week's Specials</p>
+      </div>
+      <div><button>Menu</button></div>
+    </div>
+    <div>
+      <Card>
+        <img src="greek salad.jpg" alt="Salad pic"></img>
+        <h3>Greek Salad</h3>
+        <p>7.50 $</p>
+        <p>Description</p>
+      </Card>
+    </div>
+    <div>
+      <Card>
+        <img src="bruchetta.svg" alt="Bruschetta"></img>
+        <h3>Bruschetta</h3>
+        <p>8.50 $</p>
+        <p>Description</p>
+      </Card>
+    </div>
+    <div>
+      <Card>
+        <img src="lemon dessert.jpg" alt="Lemon Dessert"></img>
+        <h3>Lemon Dessert</h3>
+        <p>6.50 $</p>
+        <p>Description</p>
+      </Card>
+    </div>
+     </>
+
 )
 }
 

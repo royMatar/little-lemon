@@ -2,7 +2,7 @@
 
 function Header(){
     return  (
-        <div>
+        <header>
             <div>Little Lemon</div>
             <div>
                 Chicago
@@ -13,7 +13,7 @@ function Header(){
             <button>Reserve a Table</button>
             <img src="restauranfood.jpg" alt="Main pic" width={360} height={470}></img>
             
-        </div>
+        </header>
         
         
     )
