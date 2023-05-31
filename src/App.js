@@ -1,5 +1,5 @@
 import './App.css';
-import Nav from './components/Navigation/Nav';
+import Navigation from './components/Navigation/Nav';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Specials from './components/Specials/Specials';
@@ -9,7 +9,7 @@ import About from './components/About/About';
 function App() {
   return (
     <div className="App">
-      <Nav/>
+      <Navigation/>
       <Header/>
       <Specials/>
       <Testimonials/>

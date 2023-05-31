@@ -1,33 +1,24 @@
 import React from "react";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
-export default function Nav() {
+export default function Navigation() {
   return (
-    <nav>
-      <ul>
-        <li>
-          <a>
-            <img src="logo.svg" />
-          </a>
-        </li>
-        <li>
-          <a>Home</a>
-        </li>
-        <li>
-          <a>About</a>
-        </li>
-        <li>
-          <a>Menu</a>
-        </li>
-        <li>
-          <a>Reservations</a>
-        </li>
-        <li>
-          <a>Order Online</a>
-        </li>
-        <li>
-          <a>Login</a>
-        </li>
-      </ul>
-    </nav>
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand href="#home"><img src="Logo.svg"/></Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#link">About</Nav.Link>
+            <Nav.Link href="#link">Menu</Nav.Link>
+            <Nav.Link href="#link">Reservation</Nav.Link>
+            <Nav.Link href="#link">Login</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
