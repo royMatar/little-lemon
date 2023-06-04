@@ -1,0 +1,33 @@
+.testtitle{
+    font-family: 'Markazi Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 48px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    color: #000000;
+    margin-top: 150px;
+    margin-bottom: 100px;
+}
+
+
+
+.testcard{
+    display: flexbox;
+    width: 200px;
+    border-width: 2px;
+    border-color: #888888;
+}
+
+.testname{
+    font-family: 'Markazi Text';
+}
+
+.testimonials{
+    display: flex;
+    gap: 70px;
+    text-align: center;
+
+}

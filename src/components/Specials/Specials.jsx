@@ -12,7 +12,7 @@ function Specials() {
         <Col >
           <h1 id="specialstitle">This Week's Specials</h1>
         </Col>
-        <Col xs lg="2">
+        <Col >
           <button id='menubtn'>Menu</button>
         </Col>
       </Row>
