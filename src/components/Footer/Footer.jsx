@@ -1,14 +1,18 @@
-import React from 'react'
+import Container from "react-bootstrap/Container";
+import "./Footer.css";
 
 function Footer() {
   return (
-    <footer>
-      <div className="container">
-        <img src='Logo.svg'/>
+    <Container fluid className="footerbg">
+      <footer>
+        <div>
+          <p>Contact Us:</p>
+          <p>Location:</p>
+        </div>
         <p>&copy; {new Date().getFullYear()} Little Lemon</p>
-      </div>
-    </footer>
-  )
+      </footer>
+    </Container>
+  );
 }
 
-export default Footer
+export default Footer;

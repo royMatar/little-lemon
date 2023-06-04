@@ -1,0 +1,28 @@
+.abouttitle {
+    font-family: 'Markazi Text';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
+    display: flex;
+    align-items: center;
+    color: #F4CE14
+}
+
+.location {
+    font-family: 'Markazi Text';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    color: #495E57;
+}
+
+.aboutsection {
+    margin-top: 200px;
+}
+
+
+#image1 {
+    border-radius: 20px;
+}

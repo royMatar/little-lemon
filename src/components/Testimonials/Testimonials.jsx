@@ -5,6 +5,8 @@ import User1 from './User1';
 import User2 from './User2';
 import User3 from './User3';
 import User4 from './User4';
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export default class FetchRandomUser extends React.Component {
   state = {
@@ -31,20 +33,21 @@ export default class FetchRandomUser extends React.Component {
     return (
       <Container>
         <div className="testtitle">Testimonials</div>
-        <div className="testimonials">
-          <div>
+        
+        <Row className="testimonials">
+          <Col>
             <User1/>
-          </div>
-          <div>
+          </Col>
+          <Col>
             <User2/>
-          </div>
-          <div>
+          </Col>
+          <Col>
             <User3/>
-          </div>
-          <div>
+          </Col>
+          <Col>
             <User4/>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </Container>
     );
   }
