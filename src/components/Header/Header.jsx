@@ -4,6 +4,7 @@ import "./Header.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
+import {Link} from 'react-router-dom';
 
 function Header() {
   return (
@@ -24,7 +25,7 @@ function Header() {
               </p>
             </Row>
             <Row>
-              <button id="rsrvbtn">Reserve a Table</button>
+              <Link to='/booking' id="rsrvbtn">Reserve a Table</Link>
             </Row>
           </Col>
           <Col>

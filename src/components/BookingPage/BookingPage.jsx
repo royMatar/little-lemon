@@ -1,8 +1,12 @@
 import React from 'react'
-
+import Footer from '../Footer/Footer';
+import Form from '../Form/Form';
 function BookingPage() {
   return (
-    <div>BookingPage</div>
+    <div>
+      <Form/>
+      <Footer/>
+    </div>
   )
 }
 
