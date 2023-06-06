@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import "./Form.css";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function Form() {
   const [name, setName] = useState("");
@@ -20,57 +23,113 @@ function Form() {
     setEmail("");
   };
 
+  const getIsFormValid = () => {
+    return name && email && date;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Table Reserved!");
+    alert("Thanks " + name + ", your table is reserved");
     clearForm();
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" value={name} />
-      </label>
-      <label>
-        <input type="radio" value={table} />
-        Indoor
-      </label>
-      <br></br>
-      <label>
-        <input type="radio" value={table} />
-        Outdoor
-      </label>
-      <br></br>
-      <label htmlFor="res-date">
-        Date:
-        <input type="date" id="res-date" value={date} />
-      </label>
-      <label htmlFor="res-time">Time:</label>
-      <select id="res-time" value={time}>
-        <option>17:00</option>
-        <option>18:00</option>
-        <option>19:00</option>
-        <option>20:00</option>
-        <option>21:00</option>
-        <option>22:00</option>
-      </select>
-      <label htmlFor="guests">
-        Number of guests:
-        <input type="range" id="guests" value={guests} />
-      </label>
-      <label htmlFor="occasion">Occasion</label>
-      <select id="occasion" value={occasion}>
-        <option>Birthday</option>
-        <option>Anniversary</option>
-        <option>Other</option>
-      </select>
-      <label htmlFor="email">Email</label>
-      <input type="email" id="email" value={email} />
-      <label>
-        Comments
-        <input type="text" value={comment} />
-      </label>
-      <input type="submit" value="Reserve" />
+    <form onSubmit={handleSubmit} id="form">
+      <Row>
+        <Col>
+          <label htmlFor="name">
+            Name: <sup>*</sup>
+            <input
+              type="text"
+              value={name}
+              id="name"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+        </Col>
+        <Col>
+          <label htmlFor="res-date">
+            Date: <sup>*</sup>
+            <input
+              type="date"
+              id="res-date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </label>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <label htmlFor="guests">
+            Number of guests: <sup>*</sup> <span>{guests}</span>
+            <input
+              type="range"
+              id="guests"
+              min="1"
+              max="10"
+              value={guests}
+              onChange={(e) => setGuests(e.target.value)}
+            />
+            
+          </label>
+        </Col>
+        <Col>
+        <label htmlFor="res-time">Time:</label>
+          <select
+            id="res-time"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+          >
+            <option>17:00</option>
+            <option>18:00</option>
+            <option>19:00</option>
+            <option>20:00</option>
+            <option>21:00</option>
+            <option>22:00</option>
+          </select>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <label htmlFor="occasion">Occasion: </label>
+          <select
+            id="occasion"
+            value={occasion}
+            onChange={(e) => setOccasion(e.target.value)}
+          >
+            <option>Birthday</option>
+            <option>Anniversary</option>
+            <option>Other</option>
+          </select>
+        </Col>
+        <Col>
+          <label htmlFor="email">
+            Email: <sup>*</sup>
+          </label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <label htmlFor="comment">
+            Comments:
+            <input
+              type="text"
+              value={comment}
+              id="comment"
+              onChange={(e) => setComment(e.target.value)}
+            />
+          </label>
+        </Col>
+      </Row>
+      <Row>
+        <input type="submit" value="Reserve" disabled={!getIsFormValid()} id="rsrvbtn"/>
+      </Row>
     </form>
   );
 }

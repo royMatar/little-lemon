@@ -5,5 +5,8 @@
     margin-top: 100px;
     color: white;
     justify-content: baseline;
+    position: bottom;
+    left: 0;
+    bottom: 0;
 }
 

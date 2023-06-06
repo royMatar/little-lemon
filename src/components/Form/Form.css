@@ -1,0 +1,65 @@
+/* Form.css */
+
+#form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  form input[type="text"],
+  form input[type="date"],
+  form input[type="email"],
+  form input[type="range"],
+  form select,
+  form textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
+  form textarea {
+    height: 100px;
+  }
+  
+  form input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  form input[type="submit"]:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  form sup {
+    color: red;
+  }
+  /* Bootstrap grid styles */
+  .row {
+    display: flex;
+  }
+  
+  .col {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .col:last-child {
+    margin-right: 0;
+  }
+  

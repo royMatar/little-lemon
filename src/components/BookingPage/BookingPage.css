@@ -1,0 +1,12 @@
+.bookingpage{
+    background-color: #495E57;
+    height: 400px;
+    color: white;
+}
+
+#imgrest{
+    width: auto;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
