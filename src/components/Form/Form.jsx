@@ -32,6 +32,16 @@ function Form() {
     alert("Thanks " + name + ", your table is reserved");
     clearForm();
   };
+
+  const [availableTimes] = useState([
+    { time: "17:00", id: 1 },
+    { time: "18:00", id: 2 },
+    { time: "19:00", id: 3 },
+    { time: "20:00", id: 4 },
+    { time: "21:00", id: 5 },
+    { time: "22:00", id: 6 },
+  ]);
+
   return (
     <form onSubmit={handleSubmit} id="form">
       <Row>
@@ -70,22 +80,17 @@ function Form() {
               value={guests}
               onChange={(e) => setGuests(e.target.value)}
             />
-            
           </label>
         </Col>
         <Col>
-        <label htmlFor="res-time">Time:</label>
+          <label htmlFor="res-time">Time:</label>
           <select
             id="res-time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
-          >
-            <option>17:00</option>
-            <option>18:00</option>
-            <option>19:00</option>
-            <option>20:00</option>
-            <option>21:00</option>
-            <option>22:00</option>
+          >{availableTimes.map((f)=> (
+            <option key={f.key}>{f.time}</option>
+          ))}
           </select>
         </Col>
       </Row>
@@ -128,7 +133,12 @@ function Form() {
         </Col>
       </Row>
       <Row>
-        <input type="submit" value="Reserve" disabled={!getIsFormValid()} id="rsrvbtn"/>
+        <input
+          type="submit"
+          value="Reserve"
+          disabled={!getIsFormValid()}
+          id="rsrvbtn"
+        />
       </Row>
     </form>
   );

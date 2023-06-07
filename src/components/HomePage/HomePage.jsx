@@ -12,6 +12,7 @@ function HomePage() {
       <Specials />
       <Testimonials />
       <About />
+      <Footer/>
     </div>
   );
 }
