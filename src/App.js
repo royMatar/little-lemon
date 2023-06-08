@@ -2,8 +2,9 @@ import HomePage from "./components/HomePage/HomePage";
 import { Route, Routes } from "react-router-dom";
 import BookingPage from "./components/BookingPage/BookingPage";
 import Navigation from "./components/Navigation/Nav";
-
+import React from "react";
 function App() {
+  
   return (
     <div className="App">
       <Navigation />

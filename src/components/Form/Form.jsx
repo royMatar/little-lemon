@@ -3,9 +3,8 @@ import "./Form.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-function Form() {
+function Form(props) {
   const [name, setName] = useState("");
-  const [table, setTable] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState("");
@@ -15,7 +14,6 @@ function Form() {
   const clearForm = () => {
     setName("");
     setComment("");
-    setTable("");
     setDate("");
     setTime("");
     setGuests("");
@@ -33,14 +31,7 @@ function Form() {
     clearForm();
   };
 
-  const [availableTimes] = useState([
-    { time: "17:00", id: 1 },
-    { time: "18:00", id: 2 },
-    { time: "19:00", id: 3 },
-    { time: "20:00", id: 4 },
-    { time: "21:00", id: 5 },
-    { time: "22:00", id: 6 },
-  ]);
+
 
   return (
     <form onSubmit={handleSubmit} id="form">
@@ -88,7 +79,7 @@ function Form() {
             id="res-time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
-          >{availableTimes.map((f)=> (
+          >{props.availableTimes.map((f)=> (
             <option key={f.key}>{f.time}</option>
           ))}
           </select>
