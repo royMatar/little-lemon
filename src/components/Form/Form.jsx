@@ -1,24 +1,31 @@
-import React, { useState } from "react";
+import React, { useReducer, useState, useEffect } from "react";
 import "./Form.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-function Form(props) {
+function Form({ availableTimes, updateTimes }) {
   const [name, setName] = useState("");
-  const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const [date, setDate] = useState("");
   const [guests, setGuests] = useState("");
   const [occasion, setOccasion] = useState("");
   const [comment, setComment] = useState("");
   const [email, setEmail] = useState("");
+
   const clearForm = () => {
     setName("");
     setComment("");
     setDate("");
-    setTime("");
     setGuests("");
     setOccasion("");
     setEmail("");
+    setTime("");
+  };
+
+  const handleDateChange = (e) => {
+    const newDate = e.target.value;
+    setDate(newDate);
+    updateTimes();
   };
 
   const getIsFormValid = () => {
@@ -29,9 +36,8 @@ function Form(props) {
     e.preventDefault();
     alert("Thanks " + name + ", your table is reserved");
     clearForm();
+    console.log({ name, email, date, time });
   };
-
-
 
   return (
     <form onSubmit={handleSubmit} id="form">
@@ -54,7 +60,7 @@ function Form(props) {
               type="date"
               id="res-date"
               value={date}
-              onChange={(e) => setDate(e.target.value)}
+              onChange={handleDateChange}
             />
           </label>
         </Col>
@@ -75,13 +81,10 @@ function Form(props) {
         </Col>
         <Col>
           <label htmlFor="res-time">Time:</label>
-          <select
-            id="res-time"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-          >{props.availableTimes.map((f)=> (
-            <option key={f.key}>{f.time}</option>
-          ))}
+          <select id="res-time" onChange={(e) => setTime(e.target.value)}>
+            {availableTimes.map((f) => (
+              <option key={f.key}>{f.time}</option>
+            ))}
           </select>
         </Col>
       </Row>
@@ -129,6 +132,7 @@ function Form(props) {
           value="Reserve"
           disabled={!getIsFormValid()}
           id="rsrvbtn"
+          onClick={handleSubmit}
         />
       </Row>
     </form>
