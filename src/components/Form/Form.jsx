@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Form.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -36,7 +36,7 @@ function Form({ availableTimes, updateTimes }) {
     e.preventDefault();
     alert("Thanks " + name + ", your table is reserved");
     clearForm();
-    console.log({ name, email, date, time });
+    console.log({ name, email, date, time, occasion, comment, guests });
   };
 
   return (
@@ -96,6 +96,7 @@ function Form({ availableTimes, updateTimes }) {
             value={occasion}
             onChange={(e) => setOccasion(e.target.value)}
           >
+            <option></option>
             <option>Birthday</option>
             <option>Anniversary</option>
             <option>Other</option>

@@ -16,16 +16,15 @@ const availableTimesReducer = (availableTimes, action) => {
       { time: "20:00", id: 4 },
       { time: "21:00", id: 5 },
       { time: "22:00", id: 6 },
+
     ];
   }
   return availableTimes;
 };
 
 function BookingPage() {
-  
-
-  function updateTimes(actionType) {
-    dispatch({type: actionType})
+  function updateTimes() {
+    dispatch({type: "UPDATE_TIMES"})
   }
 
   const initializeTimes = [
@@ -35,7 +34,9 @@ function BookingPage() {
     { time: "20:00", id: 4 },
     { time: "21:00", id: 5 },
     { time: "22:00", id: 6 },
+    { time: "23:00", id: 7 },
   ];
+
   const[availableTimes, dispatch]=useReducer(availableTimesReducer, initializeTimes);
 
   return (
