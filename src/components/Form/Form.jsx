@@ -40,7 +40,9 @@ function Form({ availableTimes, updateTimes }) {
   };
 
   return (
+    
     <form onSubmit={handleSubmit} id="form">
+      <h1 id="herotitle">Reserve a Table</h1>
       <Row>
         <Col>
           <label htmlFor="name">
@@ -82,7 +84,7 @@ function Form({ availableTimes, updateTimes }) {
         <Col>
           <label htmlFor="res-time">Time:</label>
           <select id="res-time" onChange={(e) => setTime(e.target.value)}>
-            {availableTimes.map((f) => (
+            {availableTimes && availableTimes.map((f) => (
               <option key={f.key}>{f.time}</option>
             ))}
           </select>
