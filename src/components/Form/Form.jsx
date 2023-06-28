@@ -46,7 +46,7 @@ function Form() {
 
     if (!name) {
       errors.name = "Please enter your name.";
-    } else if (name.length < 2 || name.length > 15) {
+    } else if (name.length < 3 || name.length > 15) {
       errors.name = "Name must be between 2 and 15 characters.";
     }
 
@@ -141,8 +141,8 @@ function Form() {
             id="name"
             onChange={(e) => setName(e.target.value)}
             required
-            minLength="2"
-            maxLength="15"
+            minLength={3}
+            maxLength={15}
           />
           {formErrors.name && <div className="error">{formErrors.name}</div>}
         </label>
@@ -249,7 +249,7 @@ function Form() {
         <input
           type="submit"
           value="Reserve"
-          disabled={!getIsFormValid()}
+          // disabled={!getIsFormValid()}
           id="rsrvbtn"
           onClick={handleSubmit}
         />
