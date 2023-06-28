@@ -3,7 +3,7 @@ import "./Form.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-function Form({ availableTimes, updateTimes }) {
+function Form() {
   const [name, setName] = useState("");
   const [time, setTime] = useState("");
   const [date, setDate] = useState("");
@@ -11,6 +11,7 @@ function Form({ availableTimes, updateTimes }) {
   const [occasion, setOccasion] = useState("");
   const [comment, setComment] = useState("");
   const [email, setEmail] = useState("");
+  const [fetchedTimes, setFetchedTimes] = useState([]);
 
   const clearForm = () => {
     setName("");
@@ -23,24 +24,62 @@ function Form({ availableTimes, updateTimes }) {
   };
 
   const handleDateChange = (e) => {
-    const newDate = e.target.value;
-    setDate(newDate);
-    updateTimes();
+    setDate(e.target.value);
   };
+
+  useEffect(() => {
+    if (date) {
+      const times = fetchAPI(date);
+      setFetchedTimes(times);
+    }
+  }, [date]);
 
   const getIsFormValid = () => {
     return name && email && date;
   };
 
+  const formData = { name, email, date, time, occasion, comment, guests };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Thanks " + name + ", your table is reserved");
     clearForm();
-    console.log({ name, email, date, time, occasion, comment, guests });
+    console.log(formData);
+    alert("Thanks " + name + ", your table is reserved");
+    submitAPI(formData);
+  };
+
+  const seededRandom = function (seed) {
+    var m = 2 ** 35 - 31;
+    var a = 185852;
+    var s = seed % m;
+    return function () {
+      return (s = (s * a) % m) / m;
+    };
+  };
+
+  const fetchAPI = function (date) {
+    const d = new Date(date);
+    let day = d.getDate();
+    let result = [];
+    let random = seededRandom(day);
+
+    for (let i = 17; i <= 23; i++) {
+      if (random() < 0.5) {
+        result.push(i + ":00");
+      }
+      if (random() < 0.5) {
+        result.push(i + ":30");
+      }
+    }
+
+    return result;
+  };
+
+  const submitAPI = function (formData) {
+    return true;
   };
 
   return (
-    
     <form onSubmit={handleSubmit} id="form">
       <h1 id="herotitle">Reserve a Table</h1>
       <Row>
@@ -84,8 +123,8 @@ function Form({ availableTimes, updateTimes }) {
         <Col>
           <label htmlFor="res-time">Time:</label>
           <select id="res-time" onChange={(e) => setTime(e.target.value)}>
-            {availableTimes && availableTimes.map((f) => (
-              <option key={f.key}>{f.time}</option>
+            {fetchedTimes.map((time) => (
+              <option key={time}>{time}</option>
             ))}
           </select>
         </Col>

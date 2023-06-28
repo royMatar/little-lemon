@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import Form from "./components/Form/Form";
 
-describe("Form", () => {
+
   test("submits the form with valid input", () => {
     const { getByLabelText, getByText } = render(<Form />);
     
@@ -47,4 +47,3 @@ describe("Form", () => {
     expect(getByLabelText("Date: *")).toHaveValue("");
   });
 
-});
