@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Form.css";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 function Form() {
   const [name, setName] = useState("");
@@ -12,6 +10,8 @@ function Form() {
   const [comment, setComment] = useState("");
   const [email, setEmail] = useState("");
   const [fetchedTimes, setFetchedTimes] = useState([]);
+  const [formErrors, setFormErrors] = useState({});
+  const [agreeChecked, setAgreeChecked] = useState(false);
 
   const clearForm = () => {
     setName("");
@@ -21,6 +21,9 @@ function Form() {
     setOccasion("");
     setEmail("");
     setTime("");
+    setFetchedTimes([]);
+    setFormErrors({});
+    setAgreeChecked(false);
   };
 
   const handleDateChange = (e) => {
@@ -35,13 +38,56 @@ function Form() {
   }, [date]);
 
   const getIsFormValid = () => {
-    return name && email && date;
+    return name && email && date && agreeChecked;
+  };
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (!name) {
+      errors.name = "Please enter your name.";
+    } else if (name.length < 2 || name.length > 15) {
+      errors.name = "Name must be between 2 and 15 characters.";
+    }
+
+    if (!email) {
+      errors.email = "Please enter your email address.";
+    } else if (!isValidEmail(email)) {
+      errors.email = "Please enter a valid email address.";
+    }
+
+    if (!date) {
+      errors.date = "Please select a date.";
+    }
+
+    if (!guests) {
+      errors.guests = "Please select the number of guests.";
+    }
+
+    if (!agreeChecked) {
+      errors.agree = "Please agree to the cancellation policy.";
+    }
+
+    setFormErrors(errors);
+
+    return Object.keys(errors).length === 0;
+  };
+
+  const isValidEmail = (email) => {
+    // Simple email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
 
   const formData = { name, email, date, time, occasion, comment, guests };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
     clearForm();
     console.log(formData);
     alert("Thanks " + name + ", your table is reserved");
@@ -79,96 +125,127 @@ function Form() {
     return true;
   };
 
+  const handleAgreeChange = (e) => {
+    setAgreeChecked(e.target.checked);
+  };
+
   return (
     <form onSubmit={handleSubmit} id="form">
       <h1 id="herotitle">Reserve a Table</h1>
-      <Row>
-        <Col>
-          <label htmlFor="name">
-            Name: <sup>*</sup>
-            <input
-              type="text"
-              value={name}
-              id="name"
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-        </Col>
-        <Col>
-          <label htmlFor="res-date">
-            Date: <sup>*</sup>
-            <input
-              type="date"
-              id="res-date"
-              value={date}
-              onChange={handleDateChange}
-            />
-          </label>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <label htmlFor="guests">
-            Number of guests: <sup>*</sup> <span>{guests}</span>
-            <input
-              type="range"
-              id="guests"
-              min="1"
-              max="10"
-              value={guests}
-              onChange={(e) => setGuests(e.target.value)}
-            />
-          </label>
-        </Col>
-        <Col>
-          <label htmlFor="res-time">Time:</label>
+      <div>
+        <label htmlFor="name">
+          Name: <sup>*</sup>
+          <input
+            type="text"
+            value={name}
+            id="name"
+            onChange={(e) => setName(e.target.value)}
+            required
+            minLength="2"
+            maxLength="15"
+          />
+          {formErrors.name && <div className="error">{formErrors.name}</div>}
+        </label>
+      </div>
+      <div>
+        <label htmlFor="res-date">
+          Date: <sup>*</sup>
+          <input
+            type="date"
+            id="res-date"
+            value={date}
+            onChange={handleDateChange}
+            min={new Date().toISOString().split("T")[0]}
+            required
+          />
+          {formErrors.date && <div className="error">{formErrors.date}</div>}
+        </label>
+      </div>
+
+      <div>
+        <label htmlFor="res-time">
+          Time:
           <select id="res-time" onChange={(e) => setTime(e.target.value)}>
             {fetchedTimes.map((time) => (
-              <option key={time}>{time}</option>
+              <option key={time} required>
+                {time}
+              </option>
             ))}
           </select>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <label htmlFor="occasion">Occasion: </label>
-          <select
-            id="occasion"
-            value={occasion}
-            onChange={(e) => setOccasion(e.target.value)}
-          >
-            <option></option>
-            <option>Birthday</option>
-            <option>Anniversary</option>
-            <option>Other</option>
-          </select>
-        </Col>
-        <Col>
-          <label htmlFor="email">
-            Email: <sup>*</sup>
-          </label>
+        </label>
+      </div>
+      <div>
+        <label htmlFor="email">
+          Email: <sup>*</sup>
           <input
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <label htmlFor="comment">
-            Comments:
-            <input
-              type="text"
-              value={comment}
-              id="comment"
-              onChange={(e) => setComment(e.target.value)}
-            />
-          </label>
-        </Col>
-      </Row>
-      <Row>
+          {formErrors.email && <div className="error">{formErrors.email}</div>}
+        </label>
+      </div>
+      <div>
+        <label htmlFor="occasion">
+          Occasion:
+          <select
+            id="occasion"
+            value={occasion}
+            onChange={(e) => setOccasion(e.target.value)}
+          >
+            <option>Dinner</option>
+            <option>Birthday</option>
+            <option>Anniversary</option>
+            <option>Other</option>
+          </select>
+        </label>
+      </div>
+
+      <div>
+        <label htmlFor="guests">
+          Number of guests: <sup>*</sup> <span>{guests}</span>
+          <input
+            type="range"
+            id="guests"
+            min="1"
+            max="10"
+            value={guests}
+            onChange={(e) => setGuests(e.target.value)}
+            required
+          />
+          {formErrors.guests && (
+            <div className="error">{formErrors.guests}</div>
+          )}
+        </label>
+      </div>
+      <div>
+        <label htmlFor="comment">
+          Comments:
+          <input
+            type="text"
+            value={comment}
+            id="comment"
+            onChange={(e) => setComment(e.target.value)}
+            maxLength="50"
+          />
+        </label>
+      </div>
+      <div className="checkbox-container">
+        <input
+          type="checkbox"
+          id="agree"
+          name="agree"
+          checked={agreeChecked}
+          onChange={handleAgreeChange}
+        />
+        <label htmlFor="agree" className="checkbox-label">
+        * I agree to the cancellation policy
+        </label>
+      </div>
+      {formErrors.agree && <div className="error">{formErrors.agree}</div>}
+      <div>
         <input
           type="submit"
           value="Reserve"
@@ -176,7 +253,7 @@ function Form() {
           id="rsrvbtn"
           onClick={handleSubmit}
         />
-      </Row>
+      </div>
     </form>
   );
 }
